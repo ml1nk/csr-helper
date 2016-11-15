@@ -11,9 +11,9 @@
 
 var forge = require("node-forge");
 
-function domainDefault(data, keyPair) {
+function domainDefault(data, privateKey, publicKey) {
   var csr = forge.pki.createCertificationRequest();
-  csr.publicKey = keyPair.publicKey;
+  csr.publicKey = publicKey;
   csr.setSubject([{
       shortName: 'C',
       value: data.C
@@ -38,7 +38,7 @@ function domainDefault(data, keyPair) {
     }
   ]);
 
-  csr.sign(keyPair.privateKey,forge.md.sha256.create());
+  csr.sign(privateKey,forge.md.sha256.create());
   return forge.pki.certificationRequestToPem(csr);
 }
 
