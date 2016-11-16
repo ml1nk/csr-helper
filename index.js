@@ -24,8 +24,8 @@ exports.view = {
 function api(keypair) {
 
   var save = {
-    privateKey : function() {
-      return save.privateKey(keypair.privateKey);
+    privateKey : function(password) {
+      return save.privateKey(keypair.privateKey, password);
     },
     publicKey : function() {
       return save.publicKey(keypair.publicKey);
