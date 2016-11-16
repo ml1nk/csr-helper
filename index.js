@@ -14,6 +14,12 @@ exports.gen = function(keylength) {
   });
 };
 
+exports.view = {
+  csr : function(csr) {
+    return csr(csr);
+  }
+};
+
 
 function csr(keypair) {
 
@@ -27,13 +33,8 @@ function csr(keypair) {
   };
 
   var csr = {
-    gen : {
-      ServerPass_Standard : function(data) {
-        return ServerPass_Standard(data, keypair.privateKey, keypair.publicKey);
-      }
-    },
-    view : function(csr) {
-      return view(csr);
+    ServerPass_Standard : function(data) {
+      return ServerPass_Standard(data, keypair.privateKey, keypair.publicKey);
     }
   };
 
