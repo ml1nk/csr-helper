@@ -1,5 +1,4 @@
-var forge = require("node-forge");
-
+var forge = require("../forge.min.js");
 
 module.exports = function(csr) {
     try {

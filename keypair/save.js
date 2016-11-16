@@ -1,4 +1,4 @@
-var forge = require("node-forge");
+var forge = require("../forge.min.js");
 
 function privateKey(privateKey, password) {
   return (typeof password !== "string" || password === "") ? forge.pki.privateKeyToPem(privateKey) : forge.pki.encryptRsaPrivateKey(privateKey, password);

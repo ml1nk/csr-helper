@@ -1,6 +1,6 @@
 {
   "name": "csr-helper",
-  "version": "0.0.5",
+  "version": "0.0.6",
   "description": "",
   "main": "index.js",
   "scripts": {
@@ -15,8 +15,5 @@
   "bugs": {
     "url": "https://github.com/ml1nk/csr-helper/issues"
   },
-  "homepage": "https://github.com/ml1nk/csr-helper#readme",
-  "dependencies": {
-    "node-forge": "^0.6.45"
-  }
+  "homepage": "https://github.com/ml1nk/csr-helper#readme"
 }
