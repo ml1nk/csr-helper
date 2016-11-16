@@ -1,6 +1,6 @@
 var gen = require("./keypair/gen.js");
 var load = require("./keypair/load.js");
-var save = require("./keypair/save.js");
+var keypairSave = require("./keypair/save.js");
 var ServerPass_Standard = require("./csr/gen/ServerPass_Standard.js");
 var view = require("./csr/view.js");
 
@@ -25,10 +25,10 @@ function api(keypair) {
 
   var save = {
     privateKey : function(password) {
-      return save.privateKey(keypair.privateKey, password);
+      return keypairSave.privateKey(keypair.privateKey, password);
     },
     publicKey : function() {
-      return save.publicKey(keypair.publicKey);
+      return keypairSave.publicKey(keypair.publicKey);
     }
   };
 
