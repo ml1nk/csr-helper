@@ -16,7 +16,7 @@ exports.gen = function(keylength) {
 
 exports.view = {
   csr : function(csr) {
-    return csr(csr);
+    return view(csr);
   }
 };
 
