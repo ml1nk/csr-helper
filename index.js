@@ -21,7 +21,7 @@ exports.view = {
 };
 
 
-function csr(keypair) {
+function api(keypair) {
 
   var save = {
     privateKey : function() {
