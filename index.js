@@ -1,7 +1,8 @@
 var gen = require("./keypair/gen.js");
 var load = require("./keypair/load.js");
 var save = require("./keypair/save.js");
-var ServerPass_Standard = require("./csr/ServerPass_Standard.js");
+var ServerPass_Standard = require("./csr/gen/ServerPass_Standard.js");
+var view = require("./csr/view.js");
 
 exports.load = function(privateKey, password) {
   return api(load(privateKey,password));
@@ -26,8 +27,13 @@ function csr(keypair) {
   };
 
   var csr = {
-    ServerPass_Standard : function(data) {
-      ServerPass_Standard(data, keypair.privateKey, keypair.publicKey);
+    gen : {
+      ServerPass_Standard : function(data) {
+        return ServerPass_Standard(data, keypair.privateKey, keypair.publicKey);
+      }
+    },
+    view : function(csr) {
+      return view(csr);
     }
   };
 
@@ -37,7 +43,21 @@ function csr(keypair) {
   };
 }
 
+/*
+gen(2048).then(function(keypair) {
 
+  var csr = ServerPass_Standard({
+    CN : "*.link-edv.de",
+    L : "Herdorf",
+    O : "test",
+    C : "DE"
+  }, keypair.privateKey, keypair.publicKey);
+
+  console.log(csr);
+
+  console.log(view(csr));
+});
+*/
 /*
 gen(2048).then(function(keypair) {
 

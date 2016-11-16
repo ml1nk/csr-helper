@@ -17,8 +17,10 @@ function domainDefault(data, privateKey, publicKey) {
       value: data.C
     }
   ]);
-
   csr.sign(privateKey,forge.md.sha256.create());
+  if(!csr.verify()) {
+    return false;
+  }
   return forge.pki.certificationRequestToPem(csr);
 }
 
