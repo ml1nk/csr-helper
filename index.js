@@ -4,6 +4,11 @@ var keypairSave = require("./keypair/save.js");
 var ServerPassStandard = require("./csr/gen/ServerPassStandard.js");
 var view = require("./csr/view.js");
 
+var p12Gen = require("./keypair/gen.js");
+var p12Load = require("./keypair/load.js");
+
+
+
 exports.load = function(privateKey, password) {
   var keypair = keypairLoad(privateKey,password);
   return keypair===false ? false : api(keypair);
@@ -39,27 +44,30 @@ function api(keypair) {
     }
   };
 
+  function p12(pkcs7, friendlyName) {
+    var result = p12Load(pkcs7);
+    if(result === false) {
+      return false;
+    }
+    result = p12Gen(keypair.privateKey, result, friendlyName);
+    if(result === false) {
+      return true;
+    }
+    return result;
+  }
+
   return {
     csr : csr,
-    save : save
+    save : save,
+    p12 : p12
   };
 }
 
 /*
-gen(2048).then(function(keypair) {
+gen(2048).then(function(api) {
+  return api.save.p12("test", "test");
+});*/
 
-  var csr = ServerPass_Standard({
-    CN : "*.link-edv.de",
-    L : "Herdorf",
-    O : "test",
-    C : "DE"
-  }, keypair.privateKey, keypair.publicKey);
-
-  console.log(csr);
-
-  console.log(view(csr));
-});
-*/
 /*
 gen(2048).then(function(keypair) {
 
