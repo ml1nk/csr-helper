@@ -1,11 +1,12 @@
 var gen = require("./keypair/gen.js");
-var load = require("./keypair/load.js");
+var keypairLoad = require("./keypair/load.js");
 var keypairSave = require("./keypair/save.js");
 var ServerPassStandard = require("./csr/gen/ServerPassStandard.js");
 var view = require("./csr/view.js");
 
 exports.load = function(privateKey, password) {
-  return api(load(privateKey,password));
+  var keypair = keypairLoad(privateKey,password);
+  return keypair===false ? false : api(keypair);
 };
 
 exports.gen = function(keylength) {
