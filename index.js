@@ -4,8 +4,8 @@ var keypairSave = require("./keypair/save.js");
 var ServerPassStandard = require("./csr/gen/ServerPassStandard.js");
 var view = require("./csr/view.js");
 
-var p12Gen = require("./keypair/gen.js");
-var p12Load = require("./keypair/load.js");
+var p12Gen = require("./p12/gen.js");
+var p12Load = require("./p12/load.js");
 
 
 
