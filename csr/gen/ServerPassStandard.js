@@ -20,7 +20,7 @@ function domainDefault(data, privateKey, publicKey) {
   ];
 
   for(let i=0; i<5; i++) {
-    if(data.hasOwnProperty("OU"+i)) {
+    if(data.hasOwnProperty("OU"+i) && data["OU"+i]!=="") {
       subject.push({
         shortName: 'OU',
         value: data["OU"+i]
@@ -28,14 +28,14 @@ function domainDefault(data, privateKey, publicKey) {
     }
   }
 
-  if(data.hasOwnProperty("ST")) {
+  if(data.hasOwnProperty("ST") && data.ST!=="") {
     subject.push({
       shortName: 'ST',
       value: data.ST
     });
   }
 
-  if(data.hasOwnProperty("streetAddress")) {
+  if(data.hasOwnProperty("streetAddress") && data.streetAddress!=="") {
     subject.push({
       name: "streetAddress",
       type: '2.5.4.9',
@@ -43,7 +43,7 @@ function domainDefault(data, privateKey, publicKey) {
     });
   }
 
-  if(data.hasOwnProperty("postalCode")) {
+  if(data.hasOwnProperty("postalCode") && data.postalCode!=="") {
     subject.push({
       name: "postalCode",
       type: '2.5.4.17',
