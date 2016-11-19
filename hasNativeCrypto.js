@@ -13,6 +13,6 @@ function _detectSubtleMsCrypto(fn) {
     typeof window.msCrypto.subtle[fn] === 'function');
 }
 
-exports.hasNativeCrypto =  function() {
+module.exports = function() {
   return (_detectSubtleCrypto('generateKey') && _detectSubtleCrypto('exportKey')) || (_detectSubtleMsCrypto('generateKey') && _detectSubtleMsCrypto('exportKey'));
 };

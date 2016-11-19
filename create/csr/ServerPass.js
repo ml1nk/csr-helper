@@ -1,6 +1,6 @@
 var forge = require("node-forge");
 
-function domainDefault(data, privateKey, publicKey) {
+module.exports = function(data, privateKey, publicKey) {
   var csr = forge.pki.createCertificationRequest();
   csr.publicKey = publicKey;
 
@@ -51,13 +51,10 @@ function domainDefault(data, privateKey, publicKey) {
     });
   }
 
-
   csr.setSubject(subject);
   csr.sign(privateKey,forge.md.sha256.create());
-  if(!csr.verify()) {
-    return false;
-  }
-  return forge.pki.certificationRequestToPem(csr);
-}
-
-module.exports = domainDefault;
+  //if(!csr.verify()) {
+  //  return false;
+  //}
+  return csr;
+};
