@@ -1,4 +1,4 @@
-var forge = require("../forge.min.js");
+var forge = require("node-forge");
 
 module.exports = function(pkcs7) {
   var result = false;

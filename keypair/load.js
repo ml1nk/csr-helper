@@ -1,4 +1,4 @@
-var forge = require("../forge.min.js");
+var forge = require("node-forge");
 
 function load(privateKey, password) {
 

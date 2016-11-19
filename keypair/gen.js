@@ -1,4 +1,4 @@
-var forge = require("../forge.min.js");
+var forge = require("node-forge");
 
 function gen(keylength) {
   return new Promise(function(fulfill, reject) {

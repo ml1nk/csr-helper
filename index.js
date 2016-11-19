@@ -63,10 +63,12 @@ function api(keypair) {
   };
 }
 
-/*
-gen(2048).then(function(api) {
-  return api.save.p12("test", "test");
-});*/
+var openssl = require('openssl-wrapper').exec;
+const password = 'github';
+
+openssl('genrsa', {des3: true, passout: `pass:${password}`, '2048': false}, function(err, buffer) {
+    console.log(buffer.toString());
+});
 
 /*
 gen(2048).then(function(keypair) {

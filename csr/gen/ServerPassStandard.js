@@ -1,4 +1,4 @@
-var forge = require("../../forge.min.js");
+var forge = require("node-forge");
 
 function domainDefault(data, privateKey, publicKey) {
   var csr = forge.pki.createCertificationRequest();
