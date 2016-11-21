@@ -1,6 +1,6 @@
-{
+  {
   "name": "csr-helper",
-  "version": "0.1.1",
+  "version": "0.1.10",
   "description": "",
   "main": "api.js",
   "scripts": {
@@ -12,7 +12,7 @@
     "url": "https://github.com/ml1nk/csr-helper.git"
   },
   "author": "Marcel Link",
-  "license": "GPL-3.0",
+  "license": "MIT",
   "bugs": {
     "url": "https://github.com/ml1nk/csr-helper/issues"
   },

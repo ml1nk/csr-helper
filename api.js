@@ -18,5 +18,8 @@ var api = {
     keypair : require("./import/keypair.js"),
     csr : require("./import/csr.js"),
     p7 : require("./import/p7.js")
-  }
+  },
+  hasNativeCrypto : require("./hasNativeCrypto.js")
 };
+
+module.exports = api;

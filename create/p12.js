@@ -25,12 +25,17 @@ module.exports = function(privateKey, pkcs7, friendlyName) {
     // Der eigene Schlüssel muss an den Anfang
     array.unshift(array.splice(i, 1)[0]);
 
+    var config = {
+        algorithm: '3des',
+    };
+
+    if(typeof friendlyName === "string" && friendlyName!=="") {
+      config.friendlyName = friendlyName;
+    }
+
     try {
         result = forge.pkcs12.toPkcs12Asn1(
-            privateKey, array, password, {
-                algorithm: '3des',
-                friendlyName: friendlyName
-            });
+            privateKey, array, password, config);
     } catch (err) {
         return false;
     }
@@ -38,5 +43,5 @@ module.exports = function(privateKey, pkcs7, friendlyName) {
     if (!result) {
         return false;
     }
-    return forge.util.encode64(forge.asn1.toDer(result).getBytes());
+    return result;
 };

@@ -19,7 +19,7 @@ module.exports = function(data, privateKey, publicKey) {
     }
   ];
 
-  for(let i=1; i<=5; i++) {
+  for(var i=1; i<=5; i++) {
     if(data.hasOwnProperty("OU"+i) && data["OU"+i]!=="") {
       subject.push({
         shortName: 'OU',

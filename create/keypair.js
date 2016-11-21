@@ -1,6 +1,8 @@
 var forge = require("node-forge");
 var crypto = require('crypto');
-var openssl = require('openssl-wrapper').exec;
+if(typeof window !== "object") {
+  var openssl = require('openssl-wrapper').exec;
+}
 var hasNativeCrypto = require('./../hasNativeCrypto.js');
 var importKeypair = require('./../import/keypair.js');
 
@@ -22,11 +24,12 @@ function _genOpenssl(keylength) {
                 return;
             }
             var token = buffer.toString('hex');
-            openssl('genrsa', {
-                des3: true,
-                passout: 'pass:'+token,
-                [keylength]: false
-            }, function(err, buffer) {
+            var config = {};
+                config.des3 = true;
+                config.passout = 'pass:'+token;
+                config[keylength] = false;
+
+            openssl('genrsa', config, function(err, buffer) {
                 if (err) {
                     reject(err);
                     return;
