@@ -45,7 +45,7 @@ api.create.keypair(2048).then(function(keypair){
   * p7(<pem/der pkcs7) : <forge pkcs7>
 * hasNativeCrypto() : <boolean> // check if the script is running on the browser and web crypto is available
 
-Any other function than api.create.keypair will return false if the input is invalid.
+  Any other function than api.create.keypair will return false if the input is invalid.
 
 ``` javascript
 keypair = {  // <keypair>
