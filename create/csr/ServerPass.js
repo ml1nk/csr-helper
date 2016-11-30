@@ -53,8 +53,6 @@ module.exports = function(data, privateKey, publicKey) {
 
   csr.setSubject(subject);
   csr.sign(privateKey,forge.md.sha256.create());
-  //if(!csr.verify()) {
-  //  return false;
-  //}
+
   return csr;
 };

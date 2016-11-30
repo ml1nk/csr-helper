@@ -3,7 +3,8 @@ var api = {
     keypair : require("./create/keypair.js"),
     p12 : require("./create/p12.js"),
     csr : {
-      ServerPass : require("./create/csr/ServerPass.js")
+      ServerPass : require("./create/csr/ServerPass.js"),
+      Email : require("./create/csr/Email.js")
     }
   },
   display : {

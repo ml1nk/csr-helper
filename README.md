@@ -10,13 +10,32 @@ var api = require("csr-helper");
 ``` javascript
 var api = require("csr-helper");
 api.create.keypair(2048).then(function(keypair){
-  var csr = api.create.csr.ServerPass({
+  var csr1 = api.create.csr.ServerPass({
     CN : "test.de",
     L : "UnknownCity",
     O : "testOrganization",
     C : "DE"
   },keypair.privateKey, keypair.publicKey);
-  console.log(api.export.csr(csr));
+
+  console.log(api.export.csr(csr1));
+
+  var csr2 = api.create.csr.Email({
+    O : "T-Systems",
+    C : "DE",
+    OU1 : "TeleSecTest-ShortTerm",
+    OU2 : "Test-1ke",
+    OU3 : "test",
+    firstname : "Max",
+    lastname : "Example",
+    emails : [
+      "test1@example.com",
+      "test2@example.com",
+      "test3@example.com",
+      "test4@example.com"
+    ]
+  },keypair.privateKey, keypair.publicKey);
+
+  console.log(api.export.csr(csr2));
 },function(err){
   console.error(err);
 });
@@ -30,7 +49,8 @@ api.create.keypair(2048).then(function(keypair){
   * keypair(keylength) : promise.\<keypair\>
   * p12(\<forge private key\> privateKey, \<forge pkcs7\> pkcs7, (optional) \<string\> friendlyName) : \<forge p12\>
   * csr
-    * ServerPass(\<ServerPass\>, \<forge private key\> privateKey, \<forge public key\> publicKey) : \<forge csr\>
+    * ServerPass(\<ServerPassData\>, \<forge private key\> privateKey, \<forge public key\> publicKey) : \<forge csr\>
+    * Email(\<EmailData\>, \<forge private key\> privateKey, \<forge public key\> publicKey) : \<forge csr\>
 * display
   * csr(\<forge csr\>) : <object> // object contains filtered data from the csr for displaying usage
 * export
@@ -55,7 +75,7 @@ keypair = {  // \<keypair\>
 ```
 
 ``` javascript
-ServerPass = {  // \<ServerPass\>
+ServerPassData = {  // \<ServerPassData\>
   CN : \<string\>,
   L : \<string\>,
   O : \<string\>,
@@ -67,5 +87,18 @@ ServerPass = {  // \<ServerPass\>
   (optional) OU5 : \<string\>,
   (optional) streetAddress : \<string\>,
   (optional) postalCode : \<string\>
+}
+```
+
+``` javascript
+EmailData = {  // \<EmailData\>
+  O : \<string\>,
+  C : \<string\>,
+  firstname : \<string\>,
+  lastname : \<string\>,
+  emails : \<array, 1-4 e-mails\>,
+  OU1 : \<string\>,
+  OU2 : \<string\>,
+  (optional) OU3 : \<string\>
 }
 ```
