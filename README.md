@@ -68,9 +68,9 @@ api.create.keypair(2048).then(function(keypair){
   Any other function than api.create.keypair will return false if the input is invalid.
 
 ``` javascript
-keypair = {  // \<keypair\>
-  privateKey : \<forge private key\>,
-  publicKey : \<forge pkcs7\>
+keypair = {  // <keypair>
+  privateKey : <forge private key>,
+  publicKey : <forge pkcs7>
 }
 ```
 
