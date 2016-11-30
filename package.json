@@ -11,8 +11,10 @@
     "type": "git",
     "url": "https://github.com/ml1nk/csr-helper.git"
   },
-  "author": "Marcel Link",
-  "email" : "marcel.link@t-online.de",
+  "author": {
+    "name": "Marcel Link",
+    "email": "marcel.link@t-online.de"
+  },
   "license": "MIT",
   "bugs": {
     "url": "https://github.com/ml1nk/csr-helper/issues"
