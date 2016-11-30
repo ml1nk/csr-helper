@@ -75,30 +75,30 @@ keypair = {  // \<keypair\>
 ```
 
 ``` javascript
-ServerPassData = {  // \<ServerPassData\>
-  CN : \<string\>,
-  L : \<string\>,
-  O : \<string\>,
-  C : \<string\>,
-  (optional) OU1 : \<string\>,
-  (optional) OU2 : \<string\>,
-  (optional) OU3 : \<string\>,
-  (optional) OU4 : \<string\>,
-  (optional) OU5 : \<string\>,
-  (optional) streetAddress : \<string\>,
-  (optional) postalCode : \<string\>
+ServerPassData = {  // <ServerPassData>
+  CN : <string>,
+  L : <string>,
+  O : <string>,
+  C : <string>,
+  (optional) OU1 : <string>,
+  (optional) OU2 : <string>,
+  (optional) OU3 : <string>,
+  (optional) OU4 : <string>,
+  (optional) OU5 : <string>,
+  (optional) streetAddress : <string>,
+  (optional) postalCode : <string>
 }
 ```
 
 ``` javascript
-EmailData = {  // \<EmailData\>
-  O : \<string\>,
-  C : \<string\>,
-  firstname : \<string\>,
-  lastname : \<string\>,
-  emails : \<array, 1-4 e-mails\>,
-  OU1 : \<string\>,
-  OU2 : \<string\>,
-  (optional) OU3 : \<string\>
+EmailData = {  // <EmailData>
+  O : <string>,
+  C : <string>,
+  firstname : <string>,
+  lastname : <string>,
+  emails : <array, 1-4 e-mails>,
+  OU1 : <string>,
+  OU2 : <string>,
+  (optional) OU3 : <string>
 }
 ```
