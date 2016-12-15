@@ -35,8 +35,8 @@ function _check(rows) {
     } else {
         obj[row[0]] = null;
     }
-    if(row.length>13 && row[13]!=="" && row[13].length<6) {
-        return "13:"+row[13];
+    if(row.length>12 && row[12]!=="" && row[12].length<6) {
+        return "12:"+row[12];
     }
   }
   return true;
@@ -60,8 +60,8 @@ function _convert(row, ou1, ou2) {
     data.OU3 = row[3];
   }
 
-  if(row.length>13 && row[13].length>=6) {
-    password = row[13];
+  if(row.length>12 && row[12].length>=6) {
+    password = row[12];
   } else {
     password = forge.util.encode64(forge.random.getBytesSync(12));
   }
