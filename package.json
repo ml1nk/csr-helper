@@ -1,6 +1,6 @@
   {
   "name": "csr-helper",
-  "version": "0.1.13",
+  "version": "0.1.14",
   "description": "",
   "main": "api.js",
   "scripts": {
@@ -23,6 +23,6 @@
   "dependencies": {
     "node-forge": "^0.6.45",
     "openssl-wrapper": "^0.3.4",
-    "papaparser" : "^4.1.2"
+    "papaparse" : "^4.1.2"
   }
 }
