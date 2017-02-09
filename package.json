@@ -1,11 +1,10 @@
   {
   "name": "csr-helper",
-  "version": "0.1.15",
+  "version": "0.1.16",
   "description": "",
   "main": "api.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "build": "cd ./node_modules/node-forge && npm install && ./node_modules/requirejs/bin/r.js -o minify.js optimize=none out=../../forge.bundle.js && npm prune --production"
+    "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
     "type": "git",
@@ -21,7 +20,7 @@
   },
   "homepage": "https://github.com/ml1nk/csr-helper#readme",
   "dependencies": {
-    "node-forge": "^0.6.45",
+    "node-forge": "^0.7.0",
     "openssl-wrapper": "^0.3.4",
     "papaparse" : "^4.1.2"
   }
