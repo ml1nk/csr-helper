@@ -67,10 +67,10 @@ api.create.keypair(2048).then(function(keypair){
   * bulk(\<csv content\> csv, \<string\> ou1, \<string\> ou2) : \<bulk\>
 * hasNativeCrypto() : \<boolean\> // check if the script is running on the browser and web crypto is available
 
-All functions except
-* api.create.keypair (promise rejection)
-* api.import.bulk (exception -> examples/bulk.js)
-will return false if the input is invalid.
+* All functions except
+  * api.create.keypair (promise rejection)
+  * api.import.bulk (exception, examples/bulk.js)
+* will return false if the input is invalid.
 
 ``` javascript
 keypair = {  // <keypair>
@@ -108,4 +108,4 @@ EmailData = {  // <EmailData>
 }
 ```
 
-<csv content> => examples/bulk/bulk-template.csv
+\<csv content\> =\> examples/bulk/bulk-template.csv
