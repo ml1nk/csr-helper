@@ -1,4 +1,4 @@
-var forge = require("node-forge");
+const forge = require("node-forge");
 
 function load(privateKey, password) {
 
@@ -21,7 +21,7 @@ function load(privateKey, password) {
         return false;
     }*/
 
-    var publicKey = forge.pki.rsa.setPublicKey(privateKey.n, privateKey.e);
+    let publicKey = forge.pki.rsa.setPublicKey(privateKey.n, privateKey.e);
 
     return {
         publicKey: publicKey,

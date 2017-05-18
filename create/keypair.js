@@ -1,10 +1,10 @@
-var forge = require("node-forge");
-var crypto = require('crypto');
-if(typeof window !== "object") {
-  var openssl = require('openssl-wrapper').exec;
-}
-var hasNativeCrypto = require('./../hasNativeCrypto.js');
-var importKeypair = require('./../import/keypair.js');
+const forge = require("node-forge");
+const crypto = require('crypto');
+
+const openssl = (typeof window !== "object") ? require('openssl-wrapper').exec : ()=>{};
+
+const hasNativeCrypto = require('./../hasNativeCrypto.js');
+const importKeypair = require('./../import/keypair.js');
 
 function gen(keylength) {
   if(typeof window !== "object") {
@@ -17,24 +17,24 @@ function gen(keylength) {
 module.exports = gen;
 
 function _genOpenssl(keylength) {
-    return new Promise(function(fulfill, reject) {
-        require('crypto').randomBytes(32, function(err, buffer) {
+    return new Promise((fulfill, reject)=>{
+        require('crypto').randomBytes(32, (err, buffer) => {
             if (err) {
                 reject(err);
                 return;
             }
-            var token = buffer.toString('hex');
-            var config = {};
+            let token = buffer.toString('hex');
+            let config = {};
                 config.des3 = true;
                 config.passout = 'pass:'+token;
                 config[keylength] = false;
 
-            openssl('genrsa', config, function(err, buffer) {
+            openssl('genrsa', config, (err, buffer) => {
                 if (err) {
                     reject(err);
                     return;
                 }
-                var keypair = importKeypair(buffer.toString(), token);
+                let keypair = importKeypair(buffer.toString(), token);
                 if(keypair === false) {
                   reject("invalidPemFromOpenssl");
                 } else {
@@ -46,11 +46,11 @@ function _genOpenssl(keylength) {
 }
 
 function _genForge(keylength) {
-  return new Promise(function(fulfill, reject) {
+  return new Promise((fulfill, reject) => {
       var rsa = forge.pki.rsa;
       rsa.generateKeyPair({
           bits: keylength
-      }, function(err, keypair) {
+      }, (err, keypair) => {
           if (err) {
               reject(err);
           } else {

@@ -1,7 +1,7 @@
-var forge = require("node-forge");
+const forge = require("node-forge");
 
-module.exports = function(csr) {
-    var final = {
+module.exports = (csr) => {
+    let final = {
       valid : csr.verify(),
       subject : {
         attributes : []
@@ -13,13 +13,13 @@ module.exports = function(csr) {
       final.subject.attributes = csr.subject.attributes;
     }
 
-    for(var i=0;i<csr.attributes.length;i++) {
+    for(let i=0;i<csr.attributes.length;i++) {
       if(typeof csr.attributes[i].type !== "undefined" && csr.attributes[i].type == "1.2.840.113549.1.9.14") {
-          var attribute = {};
+          let attribute = {};
           attribute.type = csr.attributes[i].type;
           attribute.name = csr.attributes[i].name;
           attribute.extensions = [];
-          for(var p=0;p<csr.attributes[i].extensions.length;p++) {
+          for(let p=0;p<csr.attributes[i].extensions.length;p++) {
             if(csr.attributes[i].extensions[p].id=="2.5.29.17") {
               attribute.extensions.push({
                 id : csr.attributes[i].extensions[p].id,

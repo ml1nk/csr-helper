@@ -1,12 +1,12 @@
-var forge = require("node-forge");
+const forge = require("node-forge");
 
-module.exports = function(data, privateKey, publicKey) {
+module.exports = (data, privateKey, publicKey) => {
 
-  var csr = forge.pki.createCertificationRequest();
+  let csr = forge.pki.createCertificationRequest();
   csr.publicKey = publicKey;
 
 
-  var subject = [{
+  let subject = [{
       shortName: 'C',
       value: data.C
     }, {
@@ -52,7 +52,7 @@ module.exports = function(data, privateKey, publicKey) {
   csr.setSubject(subject);
 
   if (data.emails.length > 1) {
-    var attributes = [];
+    let attributes = [];
     attributes[0] = {
       name: 'extensionRequest',
       extensions: [{
@@ -60,8 +60,7 @@ module.exports = function(data, privateKey, publicKey) {
         altNames: []
       }]
     };
-    var i;
-    for (i = 0; i < data.emails.length; i++) {
+    for (let i = 0; i < data.emails.length; i++) {
       attributes[0].extensions[0].altNames.push({
         type: 1,
         value: data.emails[i]

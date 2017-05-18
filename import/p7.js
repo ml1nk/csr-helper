@@ -1,7 +1,7 @@
-var forge = require("node-forge");
+const forge = require("node-forge");
 
-module.exports = function(pkcs7) {
-  var result;
+module.exports = (pkcs7) => {
+  let result;
   try {
     result = forge.pkcs7.messageFromPem(pkcs7);
   } catch(err1) {

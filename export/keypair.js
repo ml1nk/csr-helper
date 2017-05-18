@@ -1,4 +1,4 @@
-var forge = require("node-forge");
+const forge = require("node-forge");
 
 function privateKey(privateKey, password) {
   try {

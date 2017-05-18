@@ -1,10 +1,10 @@
-var forge = require("node-forge");
+const forge = require("node-forge");
 
-module.exports = function(data, privateKey, publicKey) {
-  var csr = forge.pki.createCertificationRequest();
+module.exports = (data, privateKey, publicKey) => {
+  let csr = forge.pki.createCertificationRequest();
   csr.publicKey = publicKey;
 
-  var subject = [{
+  let subject = [{
       shortName: 'CN',
       value: data.CN
     },{
@@ -19,7 +19,7 @@ module.exports = function(data, privateKey, publicKey) {
     }
   ];
 
-  for(var i=1; i<=5; i++) {
+  for(let i=1; i<=5; i++) {
     if(data.hasOwnProperty("OU"+i) && data["OU"+i]!=="") {
       subject.push({
         shortName: 'OU',

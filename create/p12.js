@@ -1,15 +1,15 @@
-var forge = require("node-forge");
+const forge = require("node-forge");
 
-module.exports = function(privateKey, pkcs7, friendlyName) {
-    var result;
-    var array = pkcs7.certificates.reverse();
-    var i = 0;
+module.exports = (privateKey, pkcs7, friendlyName) => {
+    let result;
+    let array = pkcs7.certificates.reverse();
+    let i = 0;
 
     // Wurde der passende Private Schlüssel mitgegeben?
     for (i; i < array.length; i++) {
         try {
             /* Teste ob die Keys zueinander passen */
-            var decrypted = privateKey.decrypt(array[i].publicKey.encrypt("42"));
+            let decrypted = privateKey.decrypt(array[i].publicKey.encrypt("42"));
             if (decrypted == "42") {
                 break;
             }
@@ -25,7 +25,7 @@ module.exports = function(privateKey, pkcs7, friendlyName) {
     // Der eigene Schlüssel muss an den Anfang
     array.unshift(array.splice(i, 1)[0]);
 
-    var config = {
+    let config = {
         algorithm: '3des',
     };
 

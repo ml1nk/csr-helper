@@ -1,52 +1,58 @@
-var forge = require("node-forge");
-var papa = require("papaparse");
+const forge = require("node-forge");
+const papa = require("papaparse");
+const windows1252 = require("windows-1252");
+const api = require("./../api.js");
 
 module.exports = function(csv, ou1, ou2) {
 
-  var rows = papa.parse(csv,{
+  csv = windows1252.decode(csv);
+  let rows = papa.parse(csv,{
   	delimiter: ";",
   	comments: "#",
   	skipEmptyLines: true
   }).data;
 
-  var check = _check(rows);
-  if(check !==true) {
-    return check;
-  }
+  _check(rows);
 
-  var res = {};
-  for(var i=0; i<rows.length; i++) {
-    var row = rows[i];
+  let res = {};
+  for(let i=0; i<rows.length; i++) {
+    let row = rows[i];
     res[row[0]] = _convert(row, ou1, ou2);
   }
 
-  return res;
+  return _rows(res);
 };
 
 function _check(rows) {
-  var obj = {};
-  for(var i=0; i<rows.length; i++) {
-    var row = rows[i];
+
+  if(rows.length === 0) {
+    throw {code : "rows" };
+  }
+
+  let obj = {};
+  for(let i=0; i<rows.length; i++) {
+    let row = rows[i];
     if(row.length<7) {
-      return false;
+      throw {code : "columns" };
     }
+
     if(obj.hasOwnProperty(row[0])) {
-        return "0:"+row[0];
-    } else {
-        obj[row[0]] = null;
+        throw {code: 0, data: row[0], line : i};
     }
+
+    obj[row[0]] = null;
+
     if(row.length>12 && row[12]!=="" && row[12].length<6) {
-        return "12:"+row[12];
+        throw {code: 12, data: row[12], line : i};
     }
   }
-  return true;
 }
 
 function _convert(row, ou1, ou2) {
 
-  var password;
+  let password;
 
-  var data = {
+  let data = {
     C : row[1],
     O : row[2],
     OU1 : ou1,
@@ -82,4 +88,26 @@ function _convert(row, ou1, ou2) {
     password : password,
     data : data,
   };
+}
+
+function _rows(bulk) {
+    let obj = {};
+    for(let id in bulk) {
+      obj[id] = _row(bulk[id]);
+    }
+    return obj;
+};
+
+function _row(row) {
+  let data = api.create.keypair(2048).then((keypair)=>{
+      let csr = api.create.csr.Email(row.data,keypair.privateKey, keypair.publicKey);
+      return {
+        csr : csr,
+        keypair : keypair
+      };
+  });
+  return {
+    data : data,
+    password : row.password
+  }
 }

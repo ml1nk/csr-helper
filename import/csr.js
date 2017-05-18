@@ -1,6 +1,6 @@
-var forge = require("node-forge");
+const forge = require("node-forge");
 
-module.exports = function(csr) {
+module.exports = (csr)=>{
     try {
         csr = forge.pki.certificationRequestFromPem(csr);
     } catch (err) {

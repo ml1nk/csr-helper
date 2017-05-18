@@ -57,15 +57,20 @@ api.create.keypair(2048).then(function(keypair){
   * keypair
     * privateKey(\<forge private key\> privateKey, (optional) \<string\> password) : \<(encrypted) pem private key\>
     * publicKey(\<forge public key\> publicKey) : \<pem public key\>
-  * csr(\<forge csr\>) : \<pem csr\>
-  * p12(\<forge p12\>) : \<der p12\>
+  * csr(\<forge csr\> csr) : \<pem csr\>
+  * p12(\<forge p12\> p12) : \<der p12\>
+  * bulk(\<bulk\> bulk, \<string\> type) : jszip/generateAsync({type:type})
 * import
   * keypair(\<forge private key\> privateKey, (optional) \<string\> password) : \<keypair\>
-  * csr(\<pem csr\>) : \<forge csr\>
-  * p7(\<pem/der pkcs7\>) : \<forge pkcs7\>
+  * csr(\<pem csr\> csr) : \<forge csr\>
+  * p7(\<pem/der pkcs7\> pkcs7) : \<forge pkcs7\>
+  * bulk(\<csv content\> csv, \<string\> ou1, \<string\> ou2) : \<bulk\>
 * hasNativeCrypto() : \<boolean\> // check if the script is running on the browser and web crypto is available
 
-  Any other function than api.create.keypair will return false if the input is invalid.
+All functions except
+* api.create.keypair (promise rejection)
+* api.import.bulk (exception -> examples/bulk.js)
+will return false if the input is invalid.
 
 ``` javascript
 keypair = {  // <keypair>
@@ -102,3 +107,5 @@ EmailData = {  // <EmailData>
   (optional) OU3 : <string>
 }
 ```
+
+<csv content> => examples/bulk/bulk-template.csv
