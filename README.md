@@ -52,7 +52,7 @@ api.create.keypair(2048).then(function(keypair){
     * ServerPass(\<ServerPassData\>, \<forge private key\> privateKey, \<forge public key\> publicKey) : \<forge csr\>
     * Email(\<EmailData\>, \<forge private key\> privateKey, \<forge public key\> publicKey) : \<forge csr\>
 * display
-  * csr(\<forge csr\>) : <object> // object contains filtered data from the csr for displaying usage
+  * csr(\<forge csr\>) : \<object\> // object contains filtered data from the csr for displaying usage
 * export
   * keypair
     * privateKey(\<forge private key\> privateKey, (optional) \<string\> password) : \<(encrypted) pem private key\>
@@ -67,10 +67,7 @@ api.create.keypair(2048).then(function(keypair){
   * bulk(\<csv content\> csv, \<string\> ou1, \<string\> ou2) : \<bulk\>
 * hasNativeCrypto() : \<boolean\> // check if the script is running on the browser and web crypto is available
 
-* All functions except
-  * api.create.keypair (promise rejection)
-  * api.import.bulk (exception, examples/bulk.js)
-* will return false if the input is invalid.
+All functions except api.create.keypair (promise rejection) and api.import.bulk (exception, examples/bulk.js) will return false if the input is invalid.
 
 ``` javascript
 keypair = {  // <keypair>
