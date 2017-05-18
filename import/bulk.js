@@ -33,7 +33,7 @@ function _check(rows) {
   for(let i=0; i<rows.length; i++) {
     let row = rows[i];
     if(row.length<7) {
-      throw {code : "columns" };
+      throw {code : "columns", line : i};
     }
 
     if(obj.hasOwnProperty(row[0])) {
