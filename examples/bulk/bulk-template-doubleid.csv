@@ -19,5 +19,5 @@
 # column R: SAN-Email3 (optional, 128 characters)
 # column S: Friendly Name (optional, 128 characters) => not used to generate csr
 # column T: DN Serialnumber (optional, 64 characters) => not used to generate csr
-A1;DE;Musterfirma;Buchhaltung;Jozef;ï¿½afï¿½rik;js@example.sk;41819344;Musterstraï¿½e;12;01001;ï¿½ilina;P12PasswordABC;RevokePassword123;tt@upn.example.de;san1mail@telesec.de;san2mail@telesec.de;san3mail@telesec.de;friendly name;1
-A1;DE;Musterfirma;Development;Jï¿½rgen;Musterhï¿½ver;jm@example.de;;;;;;;;;;;;;
+A1;DE;Musterfirma;Buchhaltung;Jozef;Šafárik;js@example.sk;41819344;Musterstraße;12;01001;Žilina;P12PasswordABC;RevokePassword123;tt@upn.example.de;san1mail@telesec.de;san2mail@telesec.de;san3mail@telesec.de;friendly name;1
+A1;DE;Musterfirma;Development;Jürgen;Musterhöver;jm@example.de;;;;;;;;;;;;;

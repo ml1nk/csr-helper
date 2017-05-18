@@ -49,5 +49,19 @@ module.exports = (csr) => {
       }
     }
 
+    decodeStrings(final)
+
     return final;
 };
+
+function decodeStrings(obj) {
+  for (var prop in obj) {
+    if(prop === "value" && typeof(obj[prop]) === 'string') {
+      try {
+        obj[prop] = forge.util.decodeUtf8(obj[prop]);
+      } catch(e) {}
+    } else if (typeof(obj[prop]) === 'object') {
+      decodeStrings(obj[prop]);
+    }
+  }
+}
