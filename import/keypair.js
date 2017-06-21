@@ -1,9 +1,8 @@
-const forge = require("node-forge");
+const forge = require('node-forge');
 
 function load(privateKey, password) {
-
-    if (typeof password !== "string") {
-        password = "";
+    if (typeof password !== 'string') {
+        password = '';
     }
 
     try {
@@ -25,7 +24,7 @@ function load(privateKey, password) {
 
     return {
         publicKey: publicKey,
-        privateKey: privateKey
+        privateKey: privateKey,
     };
 }
 

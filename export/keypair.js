@@ -1,9 +1,11 @@
-const forge = require("node-forge");
+const forge = require('node-forge');
 
 function privateKey(privateKey, password) {
   try {
-    return (typeof password !== "string" || password === "") ? forge.pki.privateKeyToPem(privateKey) : forge.pki.encryptRsaPrivateKey(privateKey, password);
-  } catch(e) {
+    return (typeof password !== 'string' || password === '')
+            ? forge.pki.privateKeyToPem(privateKey)
+            : forge.pki.encryptRsaPrivateKey(privateKey, password);
+  } catch (e) {
     return false;
   }
 }
@@ -11,12 +13,12 @@ function privateKey(privateKey, password) {
 function publicKey(publicKey) {
   try {
     return forge.pki.publicKeyToPem(publicKey);
-  } catch(e) {
+  } catch (e) {
     return false;
   }
 }
 
 module.exports = {
-  publicKey : publicKey,
-  privateKey : privateKey
+  publicKey: publicKey,
+  privateKey: privateKey,
 };

@@ -1,6 +1,6 @@
-const forge = require("node-forge");
+const forge = require('node-forge');
 
-module.exports = (privateKey, pkcs7, friendlyName) => {
+module.exports = (privateKey, pkcs7, friendlyName, password) => {
     let result;
     let array = pkcs7.certificates.reverse();
     let i = 0;
@@ -9,16 +9,19 @@ module.exports = (privateKey, pkcs7, friendlyName) => {
     for (i; i < array.length; i++) {
         try {
             /* Teste ob die Keys zueinander passen */
-            let decrypted = privateKey.decrypt(array[i].publicKey.encrypt("42"));
-            if (decrypted == "42") {
+            let decrypted = privateKey.decrypt(
+                array[i].publicKey.encrypt('42'));
+            if (decrypted === '42') {
                 break;
             }
-        } catch (err) {}
+        } catch (err) {
+            /* empty */
+        }
     }
 
     // Im Array konnte der passende Öffentliche Schlüssel nicht gefunden werden,
     // der gegebene Private Key passt also nicht.
-    if (i == array.length) {
+    if (i === array.length) {
         return false;
     }
 
@@ -29,7 +32,7 @@ module.exports = (privateKey, pkcs7, friendlyName) => {
         algorithm: '3des',
     };
 
-    if(typeof friendlyName === "string" && friendlyName!=="") {
+    if (typeof friendlyName === 'string' && friendlyName!=='') {
       config.friendlyName = friendlyName;
     }
 

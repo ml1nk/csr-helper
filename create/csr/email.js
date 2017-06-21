@@ -1,52 +1,51 @@
-const forge = require("node-forge");
+const forge = require('node-forge');
 
 module.exports = (data, privateKey, publicKey) => {
-
   let csr = forge.pki.createCertificationRequest();
   csr.publicKey = publicKey;
 
 
   let subject = [{
       shortName: 'C',
-      value: data.C
+      value: data.C,
     }, {
       shortName: 'O',
-      value: data.O
+      value: data.O,
     }, {
       shortName: 'OU',
-      value: data.OU1
+      value: data.OU1,
     }, {
       shortName: 'OU',
-      value: data.OU2
+      value: data.OU2,
     }];
 
-  if(data.hasOwnProperty("OU3") && data.OU3!=="") {
+  if (data.hasOwnProperty('OU3') && data.OU3!=='') {
     subject.push({
       shortName: 'OU',
-      value: data.OU3
+      value: data.OU3,
     });
   }
 
   subject.push({
     shortName: 'CN',
-    value: data.firstname + " " + data.lastname
+    value: data.firstname + ' ' + data.lastname,
   });
 
   subject.push({
     name: 'emailAddress',
-    value: data.emails[0]
+    value: data.emails[0],
   });
 
   subject.push({
     name: 'SURNAME',
     type: '2.5.4.4',
-    value: data.lastname
+    value: data.lastname,
   });
 
   subject.push({
     name: 'GIVENNAME',
     type: '2.5.4.42',
-    value: data.firstname
+    value: data.firstname,
   });
 
   csr.setSubject(subject);
@@ -57,19 +56,19 @@ module.exports = (data, privateKey, publicKey) => {
       name: 'extensionRequest',
       extensions: [{
         name: 'subjectAltName',
-        altNames: []
-      }]
+        altNames: [],
+      }],
     };
     for (let i = 0; i < data.emails.length; i++) {
       attributes[0].extensions[0].altNames.push({
         type: 1,
-        value: data.emails[i]
+        value: data.emails[i],
       });
     }
     csr.setAttributes(attributes);
   }
 
-  csr.sign(privateKey,forge.md.sha256.create());
+  csr.sign(privateKey, forge.md.sha256.create());
 
   return csr;
 };

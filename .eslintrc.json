@@ -1,0 +1,21 @@
+{
+    "env": {
+        "browser": true,
+        "commonjs": true,
+        "es6": true,
+        "node": true
+    },
+    "parserOptions": {
+        "ecmaFeatures": {
+            "jsx": true
+        },
+        "sourceType": "module",
+        "ecmaVersion": 8
+    },
+    "rules" : {
+        "require-jsdoc" : "off",
+        "eqeqeq" : "error",
+        "no-console" : "off"
+    },
+    "extends": ["eslint:recommended", "google"]
+}

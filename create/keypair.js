@@ -1,16 +1,18 @@
-const forge = require("node-forge");
-const crypto = require('crypto');
-
-const openssl = (typeof window !== "object") ? require('openssl-wrapper').exec : ()=>{};
+const forge = require('node-forge');
+const openssl = (typeof window !== 'object')
+    ? require('openssl-wrapper').exec
+    : ()=>{};
 
 const hasNativeCrypto = require('./../hasNativeCrypto.js');
 const importKeypair = require('./../import/keypair.js');
 
 function gen(keylength) {
-  if(typeof window !== "object") {
+  if (typeof window !== 'object') {
     return _genOpenssl(keylength);
   } else {
-    return hasNativeCrypto() ? _genForge(keylength) : Promise.reject("noNativeCrypto");
+    return hasNativeCrypto()
+        ? _genForge(keylength)
+        : Promise.reject('noNativeCrypto');
   }
 }
 
@@ -35,8 +37,8 @@ function _genOpenssl(keylength) {
                     return;
                 }
                 let keypair = importKeypair(buffer.toString(), token);
-                if(keypair === false) {
-                  reject("invalidPemFromOpenssl");
+                if (keypair === false) {
+                  reject('invalidPemFromOpenssl');
                 } else {
                   fulfill(keypair);
                 }
@@ -47,9 +49,9 @@ function _genOpenssl(keylength) {
 
 function _genForge(keylength) {
   return new Promise((fulfill, reject) => {
-      var rsa = forge.pki.rsa;
+      let rsa = forge.pki.rsa;
       rsa.generateKeyPair({
-          bits: keylength
+          bits: keylength,
       }, (err, keypair) => {
           if (err) {
               reject(err);
