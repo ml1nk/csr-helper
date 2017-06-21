@@ -31,7 +31,7 @@ function _check(rows) {
   for (let i=0; i<rows.length; i++) {
     let row = rows[i];
     if (row.length<7) {
-      throw {code: 'columns'};
+      throw {code: 'columns', line: i};
     }
 
     if (obj.hasOwnProperty(row[0])) {
@@ -99,7 +99,10 @@ function _rows(bulk) {
 
 function _row(row) {
   let data = api.create.keypair(2048).then((keypair)=>{
-      let csr = api.create.csr.email(row.data, keypair.privateKey, keypair.publicKey);
+      let csr = api.create.csr.email(
+        row.data,
+        keypair.privateKey,
+        keypair.publicKey);
       return {
         csr: csr,
         keypair: keypair,

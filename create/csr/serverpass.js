@@ -6,16 +6,16 @@ module.exports = (data, privateKey, publicKey) => {
 
   let subject = [{
       shortName: 'CN',
-      value: data.CN,
+      value: forge.util.encodeUtf8(data.CN),
     }, {
       shortName: 'L',
-      value: data.L,
+      value: forge.util.encodeUtf8(data.L),
     }, {
       shortName: 'O',
-      value: data.O,
+      value: forge.util.encodeUtf8(data.O),
     }, {
       shortName: 'C',
-      value: data.C,
+      value: forge.util.encodeUtf8(data.C),
     },
   ];
 
@@ -23,7 +23,7 @@ module.exports = (data, privateKey, publicKey) => {
     if (data.hasOwnProperty('OU'+i) && data['OU'+i]!=='') {
       subject.push({
         shortName: 'OU',
-        value: data['OU'+i],
+        value: forge.util.encodeUtf8(data['OU'+i]),
       });
     }
   }
@@ -31,7 +31,7 @@ module.exports = (data, privateKey, publicKey) => {
   if (data.hasOwnProperty('ST') && data.ST!=='') {
     subject.push({
       shortName: 'ST',
-      value: data.ST,
+      value: forge.util.encodeUtf8(data.ST),
     });
   }
 
@@ -39,7 +39,7 @@ module.exports = (data, privateKey, publicKey) => {
     subject.push({
       name: 'streetAddress',
       type: '2.5.4.9',
-      value: data.streetAddress,
+      value: forge.util.encodeUtf8(data.streetAddress),
     });
   }
 
@@ -47,7 +47,7 @@ module.exports = (data, privateKey, publicKey) => {
     subject.push({
       name: 'postalCode',
       type: '2.5.4.17',
-      value: data.postalCode,
+      value: forge.util.encodeUtf8(data.postalCode),
     });
   }
 
