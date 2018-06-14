@@ -1,6 +1,6 @@
 {
   "name": "csr-helper",
-  "version": "2.0.1",
+  "version": "2.0.2",
   "description": "",
   "main": "api.js",
   "scripts": {
@@ -23,14 +23,14 @@
   },
   "homepage": "https://github.com/ml1nk/csr-helper#readme",
   "dependencies": {
-    "jszip": "^3.1.4",
-    "node-forge": "^0.7.1",
+    "jszip": "^3.1.5",
+    "node-forge": "^0.7.5",
     "openssl-wrapper": "^0.3.4",
-    "papaparse": "^4.3.6",
+    "papaparse": "^4.5.0",
     "windows-1252": "^1.0.0"
   },
   "devDependencies": {
-    "eslint": "^4.7.2",
+    "eslint": "^4.19.1",
     "eslint-config-google": "^0.8.1"
   }
 }
