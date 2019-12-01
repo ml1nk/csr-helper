@@ -14,5 +14,9 @@ function _detectSubtleMsCrypto(fn) {
 }
 
 module.exports = function() {
-  return (_detectSubtleCrypto('generateKey') && _detectSubtleCrypto('exportKey')) || (_detectSubtleMsCrypto('generateKey') && _detectSubtleMsCrypto('exportKey'));
+  return (
+    _detectSubtleCrypto('generateKey') && _detectSubtleCrypto('exportKey')
+  ) || (
+    _detectSubtleMsCrypto('generateKey') && _detectSubtleMsCrypto('exportKey')
+  );
 };

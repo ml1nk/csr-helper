@@ -1,18 +1,18 @@
 const Jszip = require('jszip');
 const api = require('./../api.js');
 
-module.exports = async(bulk, type) => {
-  let zip = new Jszip();
-  let running = [];
-  for (let key in bulk) {
+module.exports = async (bulk, type) => {
+  const zip = new Jszip();
+  const running = [];
+  for (const key in bulk) {
     if (bulk.hasOwnProperty(key)) {
       ((folder, key)=>{
         folder.file('password.txt', bulk[key].password);
         bulk[key].data.then((data) => {
           folder.file('request.csr', api.export.csr(data.csr));
           folder.file('privateKey.pem',
-            api.export.keypair.privateKey(data.keypair.privateKey,
-                                          bulk[key].password)
+              api.export.keypair.privateKey(data.keypair.privateKey,
+                  bulk[key].password),
           );
         });
         running.push(bulk[key].data);

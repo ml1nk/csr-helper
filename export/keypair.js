@@ -2,9 +2,9 @@ const forge = require('node-forge');
 
 function privateKey(privateKey, password) {
   try {
-    return (typeof password !== 'string' || password === '')
-            ? forge.pki.privateKeyToPem(privateKey)
-            : forge.pki.encryptRsaPrivateKey(privateKey, password);
+    return (typeof password !== 'string' || password === '') ?
+            forge.pki.privateKeyToPem(privateKey) :
+            forge.pki.encryptRsaPrivateKey(privateKey, password);
   } catch (e) {
     return false;
   }

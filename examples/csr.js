@@ -5,14 +5,14 @@ const fs = require('fs');
 const api = require(path.join(__dirname, '..', 'api.js'));
 
 
-let privateKeyPem = fs.readFileSync(
-                      path.join(__dirname, 'keypair', 'privateKey.pem'),
-                      'utf8');
-let keypair = api.import.keypair(privateKeyPem);
+const privateKeyPem = fs.readFileSync(
+    path.join(__dirname, 'keypair', 'privateKey.pem'),
+    'utf8');
+const keypair = api.import.keypair(privateKeyPem);
 
 console.log('create csr for ServerPass');
 
-let ServerPassData = {
+const ServerPassData = {
   CN: 'CN',
   L: 'L',
   O: 'O',
@@ -26,10 +26,10 @@ let ServerPassData = {
   postalCode: 'postalCode',
 };
 
-let csr = api.create.csr.ServerPass(
-            ServerPassData,
-            keypair.privateKey,
-            keypair.publicKey);
+let csr = api.create.csr.serverpass(
+    ServerPassData,
+    keypair.privateKey,
+    keypair.publicKey);
 
 console.log(api.export.csr(csr));
 console.log(JSON.stringify(api.display.csr(csr), null, 4));
@@ -38,7 +38,7 @@ console.log('\n\n\n');
 
 console.log('create csr for Email');
 
-let EmailData = {
+const EmailData = {
   O: 'O',
   C: 'C',
   firstname: 'firstname',
@@ -53,7 +53,7 @@ let EmailData = {
   OU3: 'OU3',
 };
 
-csr = api.create.csr.Email(EmailData, keypair.privateKey, keypair.publicKey);
+csr = api.create.csr.email(EmailData, keypair.privateKey, keypair.publicKey);
 
 console.log(api.export.csr(csr));
 console.log(JSON.stringify(api.display.csr(csr), null, 4));

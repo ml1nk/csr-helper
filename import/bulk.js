@@ -5,7 +5,7 @@ const api = require('./../api.js');
 
 module.exports = function(csv, ou1, ou2) {
   csv = windows1252.decode(csv);
-  let rows = papa.parse(csv, {
+  const rows = papa.parse(csv, {
     delimiter: ';',
     comments: '#',
     skipEmptyLines: true,
@@ -13,9 +13,9 @@ module.exports = function(csv, ou1, ou2) {
 
   _check(rows);
 
-  let res = {};
+  const res = {};
   for (let i=0; i<rows.length; i++) {
-    let row = rows[i];
+    const row = rows[i];
     res[row[0]] = _convert(row, ou1, ou2);
   }
 
@@ -27,21 +27,21 @@ function _check(rows) {
     throw {code: 'rows'};
   }
 
-  let obj = {};
+  const obj = {};
   for (let i=0; i<rows.length; i++) {
-    let row = rows[i];
+    const row = rows[i];
     if (row.length<7) {
       throw {code: 'columns', line: i};
     }
 
     if (obj.hasOwnProperty(row[0])) {
-        throw {code: 0, data: row[0], line: i};
+      throw {code: 0, data: row[0], line: i};
     }
 
     obj[row[0]] = null;
 
     if (row.length>12 && row[12]!=='' && row[12].length<6) {
-        throw {code: 12, data: row[12], line: i};
+      throw {code: 12, data: row[12], line: i};
     }
   }
 }
@@ -49,7 +49,7 @@ function _check(rows) {
 function _convert(row, ou1, ou2) {
   let password;
 
-  let data = {
+  const data = {
     C: row[1],
     O: row[2],
     OU1: ou1,
@@ -88,25 +88,25 @@ function _convert(row, ou1, ou2) {
 }
 
 function _rows(bulk) {
-    let obj = {};
-    for (let id in bulk) {
-      if (bulk.hasOwnProperty(id)) {
-        obj[id] = _row(bulk[id]);
-      }
+  const obj = {};
+  for (const id in bulk) {
+    if (bulk.hasOwnProperty(id)) {
+      obj[id] = _row(bulk[id]);
     }
-    return obj;
+  }
+  return obj;
 }
 
 function _row(row) {
-  let data = api.create.keypair(2048).then((keypair)=>{
-      let csr = api.create.csr.email(
+  const data = api.create.keypair(2048).then((keypair)=>{
+    const csr = api.create.csr.email(
         row.data,
         keypair.privateKey,
         keypair.publicKey);
-      return {
-        csr: csr,
-        keypair: keypair,
-      };
+    return {
+      csr: csr,
+      keypair: keypair,
+    };
   });
   return {
     data: data,
