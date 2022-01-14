@@ -24,7 +24,7 @@
   "homepage": "https://github.com/ml1nk/csr-helper#readme",
   "dependencies": {
     "jszip": "^3.2.2",
-    "node-forge": "^0.9.1",
+    "node-forge": "^1.0.0",
     "openssl-wrapper": "^0.3.4",
     "papaparse": "^5.1.0",
     "windows-1252": "^1.0.0"
